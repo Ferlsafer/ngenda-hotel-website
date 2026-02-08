@@ -18,14 +18,14 @@
 </div>
 
             <!-- HERO SECTION START -->
-            <div class="hero-section">
-                <img src="{{ url_for('static', filename='images/main-slider/slider.jpg') }}" alt="Ngenda Hotel">
-                <div>
-                    <div>
-                        <h1>
+            <div class="hero-section" style="position: relative; height: 100vh; overflow: hidden;">
+                <img src="{{ url_for('static', filename='images/main-slider/slider.jpg') }}" alt="Ngenda Hotel" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: white; max-width: 800px; padding: 20px;">
+                        <h1 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; font-family: 'DM Serif Text', serif; text-transform: uppercase; word-wrap: break-word; overflow-wrap: break-word; hyphens: auto;">
                             <span style="color: white;">Welcome to <br>Ngenda Hotel & Apartments</span>
                         </h1>
-                        <p>
+                        <p style="font-size: 1.2rem; margin-bottom: 30px; line-height: 1.6; font-family: 'Roboto', sans-serif; word-wrap: break-word; overflow-wrap: break-word; hyphens: auto;">
                             <strong style="color: #f0ad4e;">Where comfort meets calm.</strong> Wake up in peace, live in style.
                             <br><br>
                             <em style="font-style: italic; color: rgba(255, 255, 255, 0.9);">Mahali tulivu pa kufurahia maisha kwa utulivu na starehe.</em>

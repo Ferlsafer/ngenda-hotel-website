@@ -55,90 +55,41 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text:400,400i&display=swap&subset=latin-ext" rel="stylesheet"> 
     
-    <!-- CRITICAL CSS - INLINE FOR PERFORMANCE -->
+    <!-- Hide loading overlay and fix mobile text overlap -->
     <style>
-        /* Hero Section Critical Styles */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
+        .loading-area {
+            display: none !important;
         }
         
-        .hero-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        
-        .hero-section > div,
-        .hero-section > div > div,
-        .hero-section div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-section h1 {
-            font-size: clamp(2rem, 8vw, 4rem) !important;
-            font-weight: 900;
-            margin-bottom: 20px;
-            font-family: 'DM Serif Text', serif;
-            text-transform: uppercase;
-            line-height: 1.2 !important;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            color: white;
-            text-align: center;
-        }
-        
-        .hero-section p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            font-family: 'Roboto', sans-serif;
-            color: white;
-            text-align: center;
-        }
-        
-        /* Mobile Responsive */
+        /* Hero Section Mobile Fixes */
         @media (max-width: 768px) {
             .hero-section h1 {
-                font-size: clamp(1.8rem, 6vw, 3rem) !important;
-                line-height: 1.3 !important;
-                padding: 0 15px !important;
-                text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6) !important;
-            }
-            
-            .hero-section p {
-                font-size: clamp(1rem, 3vw, 1.5rem) !important;
-                padding: 0 15px !important;
-                line-height: 1.4 !important;
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
             }
         }
         
         @media (max-width: 480px) {
             .hero-section h1 {
-                font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
-                line-height: 1.4 !important;
-                padding: 0 12px !important;
-            }
-            
-            .hero-section p {
-                font-size: clamp(0.9rem, 2.8vw, 1.2rem) !important;
-                padding: 0 12px !important;
+                font-size: 2rem !important;
+                line-height: 1.3 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
             }
         }
         
-        /* Hide loading overlay */
-        .loading-area {
-            display: none !important;
+        @media (max-width: 360px) {
+            .hero-section h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.4 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
         }
     </style>
 
