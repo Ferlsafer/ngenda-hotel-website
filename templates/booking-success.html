@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success - Ngenda Hotel & Apartments</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templete-color.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/swiper.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prettyphoto.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shortcodes.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
+    
+</head>
+
+<body>
+    <!-- LOADING AREA START -->
+    <div class="loading-area">
+        <div class="loading-center">
+            <div class="loading-img">
+                <img src="{{ url_for('static', filename='images/loading.gif') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- LOADING AREA END -->
+
+    <!-- HEADER START -->
+    <header class="site-header header-style-1 mobile-sider-drawer-menu">
+        <div class="sticky-header main-bar-wraper">
+            <div class="main-bar p-t5">
+                <div class="container">
+                    <div class="logo-header">
+                        <div class="logo-header-inner logo-header-one">
+                            <a href="{{ url_for('index') }}">
+                                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- NAV Toggle Button -->
+                    <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar icon-bar-first"></span>
+                        <span class="icon-bar icon-bar-two"></span>
+                        <span class="icon-bar icon-bar-three"></span>
+                    </button>
+                    
+                    <!-- MAIN NAV -->
+                    <div class="header-nav navbar-collapse collapse">
+                        <ul class=" nav navbar-nav">
+                            <li>
+                                <a href="{{ url_for('index') }}">Home</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('about') }}">About Us</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('gallery') }}">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('contact') }}">Contact Us</a>
+                            </li>
+                        </ul>                                    
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+        
+        <!-- SECTION CONTENT START -->
+        <div class="section-full p-tb80">
+            <div class="container">
+                <div class="section-head text-center">
+                    <h2 class="m-b5">Booking Confirmed!</h2>
+                    <div class="wt-separator-outer">
+                        <div class="wt-separator site-bg-primary"></div>
+                    </div>
+                </div>
+                
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="confirmation-box text-center">
+                                <div class="confirmation-icon">
+                                    <i class="fa fa-check-circle fa-3x"></i>
+                                </div>
+                                <h3 class="m-t0">Booking Successful!</h3>
+                                <p class="m-b20">Thank you for choosing Ngenda Hotel & Apartments. Your booking has been confirmed.</p>
+                                <div class="confirmation-details">
+                                    <p><strong>Booking ID:</strong> {{ booking_id }}</p>
+                                    <p><strong>Status:</strong> Confirmed</p>
+                                    <p><strong>Check-in Date:</strong> {{ check_in_date or 'To be confirmed' }}</p>
+                                    <p><strong>Check-out Date:</strong> {{ check_out_date or 'To be confirmed' }}</p>
+                                    <p><strong>Room Type:</strong> {{ room_type or 'Standard Room' }}</p>
+                                    <p><strong>Guests:</strong> {{ guests or '2 Adults' }}</p>
+                                </div>
+                                
+                                <div class="confirmation-actions">
+                                    <a href="{{ url_for('index') }}" class="btn-half site-button button-lg">
+                                        <span>Back to Home</span>
+                                    </a>
+                                    <a href="tel:+255671271247" class="btn-half site-button button-lg">
+                                        <span>Call Hotel</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION CONTENT END -->
+        
+    </div>
+    <!-- CONTENT END -->
+
+    <!-- FOOTER START -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="widget widget_about_us">
+                            <h4 class="widget-title">About Ngenda Hotel</h4>
+                            <p>Where comfort meets calm. Wake up in peace, live in style.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="widget widget_links">
+                            <h4 class="widget-title">Quick Links</h4>
+                            <ul>
+                                <li><a href="{{ url_for('index') }}">Home</a></li>
+                                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                                <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                                <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="widget widget_address_outer">
+                            <h4 class="widget-title">Contact Us</h4>
+                            <ul class="widget_address">
+                                <li><i class="fa fa-map-marker"></i> Isyesye–Hayanga, Mbeya</li>
+                                <li><i class="fa fa-phone"></i> +255671271247</li>
+                                <li><i class="fa fa-envelope"></i> info@ngendahotel.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="widget widget_newsletter">
+                            <h4 class="widget-title">Newsletter</h4>
+                            <p>Subscribe to our newsletter for exclusive offers and updates.</p>
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your email address" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="site-button">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="wt-footer-bot-center">
+                    <span class="copyrights-text">© 2024 Ngenda Hotel & Apartments. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroltop"><span class="fa fa-angle-up"></span></button>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/templete-custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dzsparallax.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+</body>
+</html>

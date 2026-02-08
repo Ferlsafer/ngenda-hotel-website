@@ -1,0 +1,1783 @@
+{% extends "base.html" %}
+
+{% block title %}Ngenda Hotel | Home - Luxury Hotel in Mbeya, Tanzania{% endblock %}
+
+{% block content %}
+                                            
+<!-- Notification Banner -->
+<div id="notification-banner" class="notification-banner">
+    <div class="notification-content">
+        <div class="notification-text">
+            <span class="notification-icon">ℹ️</span>
+            <span class="notification-message">
+                System Update / Maboresho: For now, you can book via WhatsApp or Booking.com using the buttons below. / Kwa sasa, unaweza kuweka oda kupitia WhatsApp au Booking.com kwa kubonyeza vitufe vilivyo hapa chini.
+            </span>
+        </div>
+        <button class="notification-close" onclick="closeNotificationBanner()">×</button>
+    </div>
+</div>
+
+            <!-- HERO SECTION START -->
+            <div class="hero-section" style="position: relative; height: 100vh; overflow: hidden;">
+                <img src="{{ url_for('static', filename='images/main-slider/slider.jpg') }}" alt="Ngenda Hotel" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: white; max-width: 800px; padding: 20px;">
+                        <h1 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; font-family: 'DM Serif Text', serif; text-transform: uppercase;">
+                            <span style="color: white;">Welcome to <br>Ngenda Hotel & Apartments</span>
+                        </h1>
+                        <p style="font-size: 1.2rem; margin-bottom: 30px; line-height: 1.6; font-family: 'Roboto', sans-serif;">
+                            <strong style="color: #f0ad4e;">Where comfort meets calm.</strong> Wake up in peace, live in style.
+                            <br><br>
+                            <em style="font-style: italic; color: rgba(255, 255, 255, 0.9);">Mahali tulivu pa kufurahia maisha kwa utulivu na starehe.</em>
+                        </p>
+                        <a href="{{ url_for('about') }}" class="site-button slider-btn-left btn-half" style="display: inline-block; padding: 15px 40px; background: #f0ad4e; color: white; text-decoration: none; text-transform: uppercase; font-weight: bold; border-radius: 5px; transition: all 0.3s ease; font-family: 'Roboto', sans-serif;">
+                            <span>More About</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- HERO SECTION END -->
+            
+            <!--BOOKING SECTION START-->
+            <div class="section-full bg-white overflow-hide">
+                <div class="container">
+                    <div class="section-head text-center">
+                        <div class="wt-tilte-inner">
+                            <h2 class="m-t0">Book Your Stay</h2>
+                            <p>Reserve your perfect room at Ngenda Hotel</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="booking-container">
+                                <form id="booking-form" class="modern-booking-form">
+                                    <div class="booking-grid-horizontal">
+                                        <!-- Left Column: Guest Info & Dates -->
+                                        <div class="booking-column">
+                                            <!-- Guest Information -->
+                                            <div class="booking-section">
+                                                <h3 class="section-title">Guest Information</h3>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label for="guest_name">Full Name *</label>
+                                                        <input type="text" id="guest_name" name="guest_name" class="form-control" placeholder="Enter your full name" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guest_email">Email *</label>
+                                                        <input type="email" id="guest_email" name="guest_email" class="form-control" placeholder="your.email@example.com" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guest_phone">Phone *</label>
+                                                        <input type="tel" id="guest_phone" name="guest_phone" class="form-control" placeholder="+255 XXX XXX XXX" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Stay Dates -->
+                                            <div class="booking-section">
+                                                <h3 class="section-title">Stay Dates</h3>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label for="check-in">Check-in *</label>
+                                                        <div class="date-picker-container">
+                                                            <input type="date" id="check-in-input" class="form-control date-input" placeholder="Select check-in date">
+                                                            <span class="date-display" id="check-in-display" style="display: none;">Select check-in date</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="check-out">Check-out *</label>
+                                                        <div class="date-picker-container">
+                                                            <input type="date" id="check-out-input" class="form-control date-input" placeholder="Select check-out date">
+                                                            <span class="date-display" id="check-out-display" style="display: none;">Select check-out date</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Right Column: Room Selection & Special Requests -->
+                                        <div class="booking-column">
+                                            <!-- Room Selection -->
+                                            <div class="booking-section">
+                                                <h3 class="section-title">Room Selection</h3>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label for="room-select">Room Type *</label>
+                                                        <select id="room-select" name="room" class="form-control room-select" required>
+                                                            <option value="" selected disabled>Loading rooms...</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="guests">Guests *</label>
+                                                        <select id="guests" name="guests" class="form-control" required>
+                                                            <option value="1">1 Guest</option>
+                                                            <option value="2">2 Guests</option>
+                                                            <option value="3">3 Guests</option>
+                                                            <option value="4">4 Guests</option>
+                                                            <option value="5">5+ Guests</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Special Requests -->
+                                            <div class="booking-section">
+                                                <h3 class="section-title">Special Requests</h3>
+                                                <div class="form-row">
+                                                    <div class="form-group full-width">
+                                                        <label for="special_requests">Special Requirements (Optional)</label>
+                                                        <textarea id="special_requests" name="special_requests" class="form-control special-requests-textarea" placeholder="Any special requirements or requests..." rows="4"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Action Buttons -->
+                                    <div class="booking-actions">
+                                        <div class="button-row-main">
+                                            <div class="button-row-primary">
+                                                <button type="button" id="book-now-btn" class="btn btn-primary btn-large">
+                                                    <span class="btn-text">Book Now</span>
+                                                    <span class="btn-spinner" style="display: none;">
+                                                        <i class="fa fa-spinner fa-spin"></i> Processing...
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="button-row-secondary">
+                                                <button type="button" id="whatsapp-btn" class="btn btn-whatsapp btn-large">
+                                                    <i class="fa fa-whatsapp"></i>
+                                                    <span>Book via WhatsApp</span>
+                                                </button>
+                                                
+                                                <a href="https://www.booking.com/hotel/tz/ngenda-and-apartments-mbeya.html?aid=304142&label=gen173bo-10CAEoggI46AdIM1gDaOgBiAEBmAEzuAEHyAEP2AED6AEB-AEBiAIBmAIhqAIBuAKY_JDMBsACAdICJGExOTY0ZmYwLTk1YjMtNGZmOC05YjdlLTczMDEzN2FjZmIyM9gCAeACAQ&sid=4bf646c5ed32da456d36c6854d0e17ad&all_sr_blocks=1565869701_427706669_15_1_0&checkin=&checkout=&dest_id=-2568505&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=11&highlighted_blocks=1565869701_427706669_15_1_0&hpos=11&matching_block_id=1565869701_427706669_15_1_0__104720&srepoch=1770291561&srpvid=35c951e53fed00e7&type=total&ucfs=1&activeTab=photosGallery" target="_blank" class="btn btn-booking-com btn-large">
+                                                    <i class="fa fa-calendar-check-o"></i>
+                                                    <span>Book on Booking.com</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="booking-info">
+                                            <p class="text-center">
+                                                <i class="fa fa-info-circle"></i>
+                                                <small>Prefer to book directly? Call us at <a href="tel:+255671271247">0671 271 247</a> or <a href="tel:+255755920058">0755 920 058</a></small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--BOOKING SECTION END-->
+            
+            <!-- WELCOME SECTION START -->
+            <div class="section-full p-tb90 bg-white overflow-hide">
+              
+                <div class="container">
+                    <div class="section-content">
+
+                    	<div class="row d-flex align-items-center">
+                   
+                    		<div class="col-lg-6 col-md-12 text-black">
+                                <!-- TITLE START -->
+                                <div class="section-head text-left">
+                                    <h2 class=" m-b5" data-title="About">About Ngenda Hotel</h2>
+                                    <div class="wt-separator-outer">
+                                        <div class="wt-separator site-bg-primary"></div>
+                                    </div>
+                                </div>
+                                <!-- TITLE END -->                             
+                                <h4 class=" m-t0">
+                                    <strong style="color: #c19b76;">Where comfort meets calm.</strong> Wake up in peace, live in style.
+                                </h4>
+                                <p>Your quiet escape, your second home. Ngenda Hotel & Apartments offers modern master bedrooms with fully equipped kitchens, perfect for extended stays. Located in Isyesye–Hayanga, Mbeya, we provide the perfect blend of comfort and convenience with amenities including Netflix, AC, high-speed Wi-Fi, 24/7 transport, and fully equipped kitchens.</p>
+                                
+                                <div class="row equal-wraper">
+                                    <div class="col-md-6 m-b30">
+										<div class="wt-icon-box-wraper left bg-gray p-a20 hover-box-effect v-icon-effect  equal-col">
+                                            <div class="icon-md m-b20">
+                                                <span class="icon-cell"><i class="flaticon-room-service v-icon"></i></span>
+                                            </div>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte">Local Restaurant</h4>
+                                                <p>Experience authentic Tanzanian cuisine and international dishes</p>
+                                            </div>
+                                        </div>                                         
+                                    </div>  
+                                                                     
+                                    <div class="col-md-6 m-b30">
+										<div class="wt-icon-box-wraper left bg-gray p-a20 hover-box-effect v-icon-effect  equal-col">
+                                            <div class="icon-md m-b20">
+                                                <span class="icon-cell"><i class="flaticon-stones v-icon"></i></span>
+                                            </div>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte ">Netflix & Entertainment</h4>
+                                                <p>Enjoy your favorite shows and movies with our entertainment systems</p>
+                                            </div>
+                                        </div>                                         
+                                    </div>
+                                    
+                                    <div class="col-md-6  m-b30">
+										<div class="wt-icon-box-wraper left bg-gray p-a20 hover-box-effect v-icon-effect  equal-col">
+                                            <div class="icon-md m-b20">
+                                                <span class="icon-cell"><i class="flaticon-wifi v-icon"></i></span>
+                                            </div>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte ">Complimentary WiFi</h4>
+                                                <p>Stay connected with free high-speed internet access</p>
+                                            </div>
+                                        </div>                                         
+                                    </div>  
+                                                                     
+                                    <div class="col-md-6  m-b30">
+										<div class="wt-icon-box-wraper left bg-gray p-a20 hover-box-effect v-icon-effect  equal-col">
+                                            <div class="icon-md m-b20">
+                                                <span class="icon-cell"><i class="flaticon-cards v-icon"></i></span>
+                                            </div>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte ">Business Center</h4>
+                                                <p>Modern facilities for your business needs</p>
+                                            </div>
+                                        </div> 
+                                    </div>                                    
+                                </div>
+                                 <a href="{{ url_for('about') }}" class="btn-half site-button button-lg m-b30"><span>More About</span><em></em></a>
+                            </div>
+                            
+                        	<div class="col-lg-6 col-md-12">
+                            	<div class="home-about-block-outer bg-repeat bg-white" style="background-image:url({{ url_for('static', filename='images/background/bg-dot.jpg') }});">
+                                	<div class="home-about-block-inner">
+                                        <div class="home-about-slider owl-carousel owl-btn-vertical-center">
+                                        
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="{{ url_for('static', filename='images/about/about.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="{{ url_for('static', filename='images/about/about1.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="{{ url_for('static', filename='images/about/about2.jpg') }}" alt="">
+                                                </div>
+                                        </div>  
+                                    </div>	
+                                </div>
+                            </div>                                 
+                        </div>
+
+                    </div>
+                </div>
+            </div>   
+            <!-- WELCOME  SECTION END -->  
+
+            <!-- ROOMS SLIDER START -->
+            <div class="section-full p-tb90 bg-gray">
+            	<div class="container">
+
+                    <!-- TITLE START -->
+                    <div class="section-head text-center">
+                        <h2 class="m-b5" data-title="Suites">Our Rooms & Suites</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->
+                    
+                    <div class="text-center">
+                        <ul class="btn-filter-wrap2">
+                            <li class="btn-filter btn-active" data-filter="*">All Rooms</li>
+                            <li class="btn-filter" data-filter=".classic">Classic</li>
+                            <li class="btn-filter" data-filter=".superior">Superior</li>
+                            <li class="btn-filter" data-filter=".deluxe">Deluxe</li>
+                            <li class="btn-filter" data-filter=".executive">Executive</li>
+                        </ul>
+                    </div>                    
+                </div>  
+                
+				<div class="container-fluid">
+                    <!-- IMAGE CAROUSEL START -->
+                    <div class="section-content">
+                        <div class="owl-carousel owl-carousel-filter2 owl-btn-bottom-center">
+                            <!-- COLUMNS 1 -->                     
+
+                            <!-- COLUMNS 2 --> 
+                            <div class="item superior">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Premium Suite</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 120,000 / $45 per night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 35m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Premium </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Premium Suite')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+
+                            <!-- COLUMNS 3 --> 
+                            <div class="item deluxe">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/room3.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Superior Family Room</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 180,000 / $68 per night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 45m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 4 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Family </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Superior Family Room')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                            
+
+                            <!-- COLUMNS 4 --> 
+                            <div class="item executive">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview3.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Luxury Suite</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 350,000 / $130 per night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 120m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 15 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Mountain View </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Luxury Suite')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+
+                            <!-- COLUMNS 5 --> 
+                            <div class="item classic">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/room5.JPG') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Budget Single Room</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 60,000 / $23 per night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 20m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 1 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Budget </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Budget Single Room')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 6 --> 
+                            <div class="item colum-2">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview4.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Superior Double Room</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 120,000/night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Superior Double Room')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 7 --> 
+                            <div class="item colum-1">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview5.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Delux Double Room</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 200,000/night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 30m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> balcony </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Delux Double Room')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+
+                            <!-- COLUMNS 8 --> 
+                            <div class="item colum-3">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview1.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Premium Suite</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 250,000/night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 50m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 4 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Premium </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Premium Suite')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 9 --> 
+                            <div class="item colum-2">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview2.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Executive Room</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 180,000/night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 40m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 3 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Executive </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Executive Room')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 10 --> 
+                            <div class="item colum-4">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="{{ url_for('static', filename='images/rooms/roomview3.jpg') }}" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Apartment with Balcony</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <span>TZS 350,000/night</span>
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 120m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Adult:</strong> 15 </li>
+                                                <li><i class="fa fa-eye"></i> <strong>View:</strong> Mountain </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('Apartment with Balcony')" class="btn-half site-button button-lg"><span>Book Now</span><em></em></a>
+                                </div>
+                            </div>                                 
+
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center m-t20">
+                    <p class="text-muted"><i class="fa fa-map-marker"></i> Just 1.9 m from Mbeya Airport</p>
+                </div>
+            </div>   
+            <!-- ROOMS SLIDER END -->
+
+            <!-- OUR SPECIALLIZATION START -->
+            <div class="section-full bg-change-section overlay-wraper p-tb90"   data-toggle="tab-hover">
+                <div class="overlay-main bg-black opacity-06"></div>
+                <div class="bg-changer">
+                    <div  class=" section-bg active" style="background-image:url(images/background/room.jpg)"></div>
+                    <div  class="section-bg" style="background-image:url(images/background/appartment.jpg)"></div>
+                    <div  class="section-bg" style="background-image:url(images/background/architecture.jpg)"></div> 
+                    <div  class="section-bg" style="background-image:url(images/background/interior.jpg)"></div> 
+                </div>
+                                          
+                <div class="container">
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5 text-white" data-title="Specialization">Our Specialization</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->                                   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="services-part-left ">
+                            	<div class="text-white">
+                                <h3 class=" m-t0">Discover Ngenda Hotel - Your perfect destination in Mbeya, Tanzania.</h3>
+                                <p>Located on Isyesye–Hayanga, Mbeya, Ngenda Hotel offers comfortable accommodation, exceptional dining, and warm Tanzanian hospitality. Whether you're here for business or leisure, we provide the perfect base for exploring the beautiful southern highlands of Tanzania.</p>
+                                </div>
+                                <div class="section-content">
+                                    <div class="row">
+                                                
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
+                                            <div class="m-b30 wt-icon-box-wraper">
+												<h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="406">0</span><b>+</b></h2>                                            
+                                                <h5 class="wt-tilte m-b0 text-white">Happy Guests</h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
+                                            <div class="m-b30  wt-icon-box-wraper">
+												<h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="132">0</span><b>+</b></h2>                                                
+                                                <h5 class="wt-tilte m-b0 text-white">Excellent Reviews</h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
+                                            <div class="m-b30 wt-icon-box-wraper">
+                                                <h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="207">0</span><b>+</b></h2> 
+                                                <h5 class="wt-tilte m-b0 text-white">Daily Guests Served</h5>
+                                            </div>
+                                        </div>
+                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row no-col-gap twm-our-speci-box-wrap">
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white  bgcall-block hover-box-effect" >
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="flaticon-hotel"></i></span>
+                                        </div>
+                                        <div class="icon-content text-white">
+                                            <h4 class="wt-tilte m-b10">Rooms</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white  bgcall-block  hover-box-effect" >
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="flaticon-coffee-cup"></i></span>
+                                        </div>
+                                        <div class="icon-content  text-white">
+                                            <h4 class="wt-tilte m-b10">Restaurant & Bar</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white  bgcall-block  hover-box-effect">
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="flaticon-cheers"></i></span>
+                                        </div>
+                                        <div class="icon-content  text-white">
+                                            <h4 class="wt-tilte m-b10">Local Bar</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6  col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white bgcall-block hover-box-effect">
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="flaticon-seats-at-the-hall"></i></span>
+                                        </div>
+                                        <div class="icon-content  text-white">
+                                            <h4 class="wt-tilte m-b10">Conference Room</h4>
+                                        </div>
+                                    </div>
+                                </div>                                                                                
+                            </div>                        
+                        </div>
+                    </div>                                     
+                </div>
+            </div>   
+            <!-- OUR SPECIALLIZATION END -->
+            
+            <!-- OUR SERVICES START -->
+            <div class="section-full p-tb90">
+                                         
+                <div class="container">
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5" data-title="Services">Our Services</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->                                   
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="flaticon-bus v-icon"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Free Airport Shuttle</h4>
+                                    <p>Complimentary airport pickup and drop-off service, just 3km from Mbeya Airport</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="flaticon-coffee-cup v-icon"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Buffet Breakfast</h4>
+                                    <p>Start your day with our delicious buffet breakfast featuring local and international cuisine</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="flaticon-reception v-icon"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">24-Hour Front Desk</h4>
+                                    <p>Round-the-clock reception service to assist you with all your needs</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="flaticon-cheers v-icon"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Bar & Restaurant</h4>
+                                    <p>Enjoy authentic Tanzanian cuisine and international dishes at our on-site restaurant</p>
+                                </div>
+                            </div>                                       
+                        </div>                                                                                                                        
+                    </div>
+                    <div class="text-center">
+                    	<a href="{{ url_for('services') }}" class="btn-half site-button button-lg m-t50"><span>View All</span><em></em></a>
+                    </div>                                     
+                </div>
+            </div>   
+            <!-- OUR SERVICES END -->
+                     
+            <!-- OUR PARTNERS START -->
+            <div class="section-full p-tb90 bg-gray">
+				<div class="container">
+                
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5" data-title="Partners">Our Partners</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->  
+     
+					<div class="section-content">
+                    	<div class="client-grid grid-4 row">
+                        	<div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/company-logo.png') }}" alt="Company Logo"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/tours.jpeg') }}" alt="Tours Partner"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/company-logo.png') }}" alt="Company Logo"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/construction.jpeg') }}" alt="Tours Partner"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/company-logo.png') }}" alt="Company Logo"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/tours.jpeg') }}" alt="Tours Partner"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/company-logo.png') }}" alt="Company Logo"> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="{{ url_for('static', filename='images/client-logo/construction.jpeg') }}" alt="Tours Partner"> 
+                                </a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+            </div>   
+            <!-- OUR PARTNERS END --> 
+                                     
+        </div>
+        <!-- CONTENT END -->
+        
+        <!-- Custom CSS for Room Image Consistency -->
+        <style>
+        .rooms-pic-section {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .rooms-pic-section .wt-media {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .rooms-pic-section .wt-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .rooms-pic-section:hover .wt-media img {
+            transform: scale(1.05);
+        }
+        
+        .room-rent-section-outer {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .room-rent-section-outer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .overlay-bx-3 {
+            background: linear-gradient(to bottom, rgba(193, 27, 42, 0.8), rgba(193, 27, 42, 0.9));
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .rooms-pic-section:hover .overlay-bx-3 {
+            opacity: 1;
+        }
+        
+        .rooms-pic-section .wt-title {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        
+        @media (max-width: 768px) {
+            .rooms-pic-section .wt-media {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rooms-pic-section .wt-media {
+                height: 180px;
+            }
+        }
+        </style>
+        
+        <!-- Modern Booking Form Styles -->
+        <style>
+        /* Ngenda Brand Colors */
+        :root {
+            --ngenda-brown: #8B4513;
+            --ngenda-cream: #F5E6D3;
+            --ngenda-dark-brown: #654321;
+            --ngenda-gold: #D4AF37;
+            --ngenda-light-cream: #FAF0E6;
+        }
+        
+        .modern-booking-form {
+            max-width: 100%;
+        }
+        
+        /* Horizontal Layout */
+        .booking-grid-horizontal {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .booking-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .booking-section {
+            background: var(--ngenda-light-cream);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 0; /* Removed since columns handle spacing */
+        }
+        
+        .section-title {
+            color: var(--ngenda-dark-brown);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--ngenda-gold);
+            padding-bottom: 8px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            flex: 1;
+            min-width: 180px; /* Smaller minimum width for horizontal layout */
+        }
+        
+        .form-group.full-width {
+            flex: 1 1 100%;
+            min-width: 100%;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--ngenda-dark-brown);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            display: block;
+        }
+        
+        .form-control {
+            padding: 10px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--ngenda-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        .date-picker-container {
+            position: relative;
+            flex: 1;
+        }
+        
+        .date-input {
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .date-display {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--ngenda-brown);
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+        
+        .room-select {
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .room-select option:disabled {
+            color: #999 !important;
+            font-style: italic !important;
+            background-color: #f5f5f5 !important;
+        }
+        
+        .room-select option:not(:disabled) {
+            color: #333 !important;
+            font-weight: 500 !important;
+        }
+        
+        .special-requests-textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+            width: 100%;
+        }
+        
+        .booking-actions {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .button-row-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .button-row-primary {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .button-row-secondary {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .booking-info {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .booking-info p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .booking-info a {
+            color: var(--ngenda-brown);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .booking-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 140px;
+        }
+        
+        .btn-primary {
+            background: var(--ngenda-brown);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--ngenda-dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-booking-com {
+            background: #0073e6;
+            color: white;
+        }
+        
+        .btn-booking-com:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 115, 230, 0.3);
+        }
+        
+        .btn-large {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-spinner {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Alert/Toast Styles */
+        .alert-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--ngenda-brown);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .alert-toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .booking-grid-horizontal {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .booking-column {
+                gap: 15px;
+            }
+            
+            .booking-section {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            .booking-section {
+                padding: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .button-row-secondary {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-large {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1rem;
+            }
+            
+            .booking-container {
+                padding: 15px;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+        }
+        </style>
+        
+        <!-- Notification Banner Styles -->
+        <style>
+        /* Notification Banner Styles */
+        .notification-banner {
+            background: #000000;
+            color: #D4AF37;
+            border-bottom: 2px solid #D4AF37;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            font-family: 'Roboto', sans-serif;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .notification-text {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            line-height: 1.4;
+        }
+        
+        .notification-icon {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .notification-message {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: #D4AF37;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 15px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .notification-close:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+        
+        .notification-banner.hiding {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+        
+        /* Adjust hero section when banner is visible */
+        .hero-section {
+            margin-top: 60px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .notification-content {
+                padding: 10px 15px;
+            }
+            
+            .notification-message {
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
+            
+            .notification-icon {
+                font-size: 1rem;
+                margin-right: 8px;
+            }
+            
+            .notification-close {
+                font-size: 1.2rem;
+                width: 25px;
+                height: 25px;
+                margin-left: 10px;
+            }
+            
+            .hero-section {
+                margin-top: 55px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .notification-message {
+                font-size: 0.8rem;
+            }
+            
+            .notification-content {
+                padding: 8px 12px;
+            }
+            
+            .hero-section {
+                margin-top: 50px;
+            }
+        }
+        </style>
+        
+        <!-- HMS Booking Functions -->
+        <script>
+        // HMS API Configuration
+        const HMS_API_URL = '{{ config.HMS_API_URL or "http://localhost:5000" }}';
+        
+        // Close notification banner function
+        function closeNotificationBanner() {
+            const banner = document.getElementById('notification-banner');
+            banner.classList.add('hiding');
+            setTimeout(() => {
+                banner.style.display = 'none';
+                // Adjust hero section margin
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    heroSection.style.marginTop = '0';
+                }
+            }, 500);
+        }
+        
+        // Show alert toast message
+        function showAlert(message, type = 'error') {
+            const toast = document.createElement('div');
+            toast.className = `alert-toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+        
+        // Load rooms dynamically from HMS
+        async function loadRooms() {
+            const roomSelect = document.getElementById('room-select');
+            roomSelect.innerHTML = '<option value="" selected disabled>Loading rooms...</option>';
+            
+            try {
+                // Try HMS API first (production-ready)
+                const response = await fetch(`${HMS_API_URL}/api/public/rooms`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const rooms = data.rooms || [];  // Extract rooms from data.rooms with safety
+                    
+                    if (rooms.length > 0) {
+                        roomSelect.innerHTML = '<option value="" selected disabled>Select a room</option>';
+                        
+                        rooms.forEach(room => {
+                            const option = document.createElement('option');
+                            option.value = room.id;  // Use actual room ID from HMS
+                            
+                            // Check room status and format accordingly
+                            const isAvailable = room.status === 'Available';
+                            const statusText = isAvailable ? 'Available' : 'Occupied';
+                            
+                            // Format room display with status and price (with safety)
+                            const price = (room.price || 0).toLocaleString();
+                            option.textContent = `${room.name} (${statusText}) - ${room.currency || 'TZS'} ${price}/night`;
+                            
+                            // Disable option if room is not available
+                            if (!isAvailable) {
+                                option.disabled = true;
+                                option.style.color = '#999';
+                                option.style.fontStyle = 'italic';
+                            } else {
+                                option.style.color = '#333';
+                                option.style.fontWeight = '500';
+                            }
+                            
+                            roomSelect.appendChild(option);
+                        });
+                        
+                        const availableCount = rooms.filter(r => r.status === 'Available').length;
+                        console.log(`✅ Loaded ${rooms.length} rooms from HMS API (${availableCount} available)`);
+                        
+                        // Show success message briefly
+                        if (availableCount > 0) {
+                            showAlert('Rooms loaded successfully!', 'success');
+                        } else {
+                            showAlert('No rooms available at the moment', 'warning');
+                        }
+                    } else {
+                        throw new Error('No rooms data received');
+                    }
+                } else {
+                    throw new Error(`HMS API returned ${response.status}`);
+                }
+            } catch (error) {
+                console.error('❌ HMS API Error:', error);
+                console.log('🔄 Falling back to mock rooms...');
+                
+                // Fallback to hardcoded rooms if HMS fails
+                loadFallbackRooms();
+                
+                // Show appropriate message
+                if (error.message.includes('fetch')) {
+                    showAlert('Unable to connect to hotel system. Showing available rooms.', 'warning');
+                } else {
+                    showAlert('Hotel system temporarily unavailable. Showing available rooms.', 'warning');
+                }
+            }
+        }
+        
+        // Fallback rooms if API fails
+        function loadFallbackRooms() {
+            const roomSelect = document.getElementById('room-select');
+            roomSelect.innerHTML = '<option value="" selected disabled>Select a room</option>';
+            
+            const fallbackRooms = [
+                { id: 'room-1', name: 'Standard Double Room', price: 50000, currency: 'TZS', status: 'Available' },
+                { id: 'room-2', name: 'Superior Double Room', price: 80000, currency: 'TZS', status: 'Available' },
+                { id: 'room-3', name: 'Superior Family Room', price: 120000, currency: 'TZS', status: 'Occupied' },
+                { id: 'room-4', name: 'Apartment with Balcony', price: 200000, currency: 'TZS', status: 'Available' },
+                { id: 'room-5', name: 'Budget Single Room', price: 30000, currency: 'TZS', status: 'Available' }
+            ];
+            
+            fallbackRooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room.id;
+                
+                // Check room status and format accordingly
+                const isAvailable = room.status === 'Available';
+                const statusText = isAvailable ? 'Available' : 'Occupied';
+                
+                // Format room display with status and price (with safety)
+                const price = (room.price || 0).toLocaleString();
+                option.textContent = `${room.name} (${statusText}) - ${room.currency || 'TZS'} ${price}/night`;
+                
+                // Disable option if room is not available
+                if (!isAvailable) {
+                    option.disabled = true;
+                    option.style.color = '#999';
+                    option.style.fontStyle = 'italic';
+                } else {
+                    option.style.color = '#333';
+                    option.style.fontWeight = '500';
+                }
+                
+                roomSelect.appendChild(option);
+            });
+            
+            const availableCount = fallbackRooms.filter(r => r.status === 'Available').length;
+            console.log(`Loaded ${fallbackRooms.length} fallback rooms (${availableCount} available)`);
+        }
+        
+        // Parse date string from format "➜ 08 Feb 2026" to "YYYY-MM-DD"
+        function parseDateString(dateString) {
+            try {
+                // Remove arrow and trim
+                const cleanDate = dateString.replace('➜', '').trim();
+                
+                // Parse date
+                const date = new Date(cleanDate);
+                
+                // Format to YYYY-MM-DD
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                
+                return `${year}-${month}-${day}`;
+            } catch (error) {
+                console.error('Date parsing error:', error);
+                return dateString; // Fallback to original string
+            }
+        }
+        
+        // Initialize date pickers
+        function initializeDatePickers() {
+            const checkInInput = document.getElementById('check-in-input');
+            const checkOutInput = document.getElementById('check-out-input');
+            const checkInDisplay = document.getElementById('check-in-display');
+            const checkOutDisplay = document.getElementById('check-out-display');
+            
+            // Set minimum dates (today)
+            const today = new Date().toISOString().split('T')[0];
+            checkInInput.min = today;
+            checkOutInput.min = today;
+            
+            // Add change listeners for date validation
+            checkInInput.addEventListener('change', function() {
+                if (this.value) {
+                    // Update minimum date for checkout
+                    checkOutInput.min = this.value;
+                    
+                    // Clear checkout if it's before checkin
+                    if (checkOutInput.value && checkOutInput.value < this.value) {
+                        checkOutInput.value = '';
+                    }
+                    
+                    // Update display for user feedback
+                    const date = new Date(this.value);
+                    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+                    const formatted = date.toLocaleDateString('en-US', options);
+                    checkInDisplay.textContent = `➜ ${formatted}`;
+                    checkInDisplay.style.display = 'block';
+                } else {
+                    checkInDisplay.style.display = 'none';
+                }
+            });
+            
+            checkOutInput.addEventListener('change', function() {
+                if (this.value) {
+                    // Update display for user feedback
+                    const date = new Date(this.value);
+                    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+                    const formatted = date.toLocaleDateString('en-US', options);
+                    checkOutDisplay.textContent = `➜ ${formatted}`;
+                    checkOutDisplay.style.display = 'block';
+                } else {
+                    checkOutDisplay.style.display = 'none';
+                }
+            });
+            
+            console.log('Date pickers initialized successfully');
+        }
+        
+        // Handle booking submission
+        async function submitBooking() {
+            const bookBtn = document.getElementById('book-now-btn');
+            const btnText = bookBtn.querySelector('.btn-text');
+            const btnSpinner = bookBtn.querySelector('.btn-spinner');
+            
+            try {
+                // Get form values
+                const guestName = document.getElementById('guest_name').value.trim();
+                const guestEmail = document.getElementById('guest_email').value.trim();
+                const guestPhone = document.getElementById('guest_phone').value.trim();
+                const roomId = document.getElementById('room-select').value;
+                const guests = parseInt(document.getElementById('guests').value);
+                const specialRequests = document.getElementById('special_requests').value.trim();
+                
+                // Get dates from actual input values (not display)
+                const checkInInput = document.getElementById('check-in-input');
+                const checkOutInput = document.getElementById('check-out-input');
+                const checkIn = checkInInput.value;
+                const checkOut = checkOutInput.value;
+                
+                // Validate dates - only check if they're actually selected
+                if (!checkIn || !checkOut) {
+                    showAlert('Please select your stay dates first', 'warning');
+                    return;
+                }
+                
+                // Additional validation
+                if (!guestName || !guestEmail || !guestPhone || !roomId) {
+                    showAlert('Please fill in all required fields', 'warning');
+                    return;
+                }
+                
+                if (typeof roomId !== 'string' || !roomId) {
+                    showAlert('Please select a room', 'warning');
+                    return;
+                }
+                
+                if (typeof guests !== 'number' || guests < 1) {
+                    showAlert('Please select at least 1 guest', 'warning');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(guestEmail)) {
+                    showAlert('Please enter a valid email address', 'warning');
+                    return;
+                }
+                
+                // Show loading state
+                btnText.style.display = 'none';
+                btnSpinner.style.display = 'inline-flex';
+                bookBtn.disabled = true;
+                
+                // Prepare payload for HMS API - Exact schema match
+                const payload = {
+                    room_id: roomId,  // String: actual room ID from HMS
+                    guests: guests,  // Integer: total guests
+                    guest_name: guestName,
+                    guest_email: guestEmail,
+                    guest_phone: guestPhone,
+                    check_in: checkIn,  // String: YYYY-MM-DD format (already formatted from HTML5 date input)
+                    check_out: checkOut,  // String: YYYY-MM-DD format (already formatted from HTML5 date input)
+                    hotel_id: 1,  // Integer: Ngenda Hotel ID
+                    special_requests: specialRequests  // String: empty if blank
+                };
+                
+                console.log('Sending booking payload:', payload);
+                console.log('Date values - Check-in:', checkIn, 'Check-out:', checkOut);
+                
+                // Send POST request to HMS API
+                const response = await fetch(`${HMS_API_URL}/api/bookings/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer {{ config.HMS_API_KEY or "ngenda_website_key" }}'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (response.status === 201) {
+                    const result = await response.json();
+                    showAlert(`Booking confirmed! Your booking ID is: ${result.booking_reference}`, 'success');
+                    
+                    // Reset form
+                    document.getElementById('booking-form').reset();
+                    document.getElementById('check-in-display').textContent = 'Select check-in date';
+                    document.getElementById('check-out-display').textContent = 'Select check-out date';
+                    
+                } else {
+                    const error = await response.json();
+                    showAlert(error.message || 'Booking failed. Please try again.', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Booking error:', error);
+                showAlert('Network error. Please check your connection and try again.', 'error');
+            } finally {
+                // Reset loading state
+                btnText.style.display = 'inline';
+                btnSpinner.style.display = 'none';
+                bookBtn.disabled = false;
+            }
+        }
+        
+        // WhatsApp booking function
+        function bookViaWhatsApp() {
+            const guestName = document.getElementById('guest_name').value.trim();
+            const checkInInput = document.getElementById('check-in-input');
+            const checkOutInput = document.getElementById('check-out-input');
+            const guests = document.getElementById('guests').value;
+            
+            // Format dates for WhatsApp message
+            let checkInText = 'Not selected';
+            let checkOutText = 'Not selected';
+            
+            if (checkInInput.value) {
+                const checkInDate = new Date(checkInInput.value);
+                checkInText = checkInDate.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+            }
+            
+            if (checkOutInput.value) {
+                const checkOutDate = new Date(checkOutInput.value);
+                checkOutText = checkOutDate.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+            }
+            
+            const message = `Hello Ngenda Hotel, I would like to make a booking.\n\nName: ${guestName || 'Guest'}\nCheck-in: ${checkInText}\nCheck-out: ${checkOutText}\nGuests: ${guests || 'Not specified'}\n\nPlease check availability and provide rates.`;
+            
+            // Use primary hotel WhatsApp number
+            const phoneNumber = '+255671271247';
+            const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRooms();
+            initializeDatePickers();
+            
+            // Add event listeners
+            document.getElementById('book-now-btn').addEventListener('click', submitBooking);
+            document.getElementById('whatsapp-btn').addEventListener('click', bookViaWhatsApp);
+        });
+        
+        function calculateTotalPrice(roomId, checkIn, checkOut) {
+            // Implement your pricing logic here
+            // This is a placeholder - you should implement actual pricing calculation
+            const roomPrices = {
+                1: 80000,  // Standard Double Room
+                2: 120000, // Superior Double Room  
+                3: 180000, // Superior Family Room
+                4: 350000, // Apartment with Balcony
+                5: 60000   // Budget Single Room
+            };
+            
+            const basePrice = roomPrices[roomId] || 80000;
+            const nights = calculateNights(checkIn, checkOut);
+            return basePrice * nights;
+        }
+        
+        function calculateNights(checkIn, checkOut) {
+            // Simple night calculation - you may want to improve this
+            const start = new Date(checkIn);
+            const end = new Date(checkOut);
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays || 1;
+        }
+        
+        function showBookingConfirmedModal(bookingReference) {
+            // Create and show booking confirmed modal
+            const modalHtml = `
+                <div class="modal fade" id="bookingConfirmedModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Booking Confirmed! 🎉</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                    <div class="mb-3">
+                                        <i class="fa fa-check-circle fa-3x text-success"></i>
+                                    </div>
+                                    <h4>Your booking has been confirmed!</h4>
+                                    <p><strong>Booking Reference:</strong> ${bookingReference}</p>
+                                    <p>You will receive a confirmation email shortly.</p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/booking-success/${bookingReference}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Remove existing modal if present
+            const existingModal = document.getElementById('bookingConfirmedModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // Add new modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('bookingConfirmedModal'));
+            modal.show();
+        }
+        
+        function showBookingError(message) {
+            // Show error message (you can customize this)
+            alert(message); // Simple alert - you may want to use a better UI
+        }
+        
+        function bookViaWhatsApp() {
+            // Get form values
+            const roomType = document.querySelector('select[name="room"]').value;
+            const checkIn = document.querySelector('.t-check-in').textContent || 'Check-in date';
+            const checkOut = document.querySelector('.t-check-out').textContent || 'Check-out date';
+            const adults = document.querySelector('select[name="No-adult"]').value;
+            const children = document.querySelector('select[name="No-children"]').value;
+            
+            // Create WhatsApp message
+            const message = `Hello Ngenda Hotel, I would like to book the ${roomType} from ${checkIn} to ${checkOut}. Adults: ${adults}, Children: ${children}.`;
+            const phone = "+255745765119";
+            const whatsappUrl = "https://wa.me/" + phone.replace('+', '') + "?text=" + encodeURIComponent(message);
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        function bookRoomViaWhatsApp(roomName) {
+            const phone = "+255745765119";
+            const message = "Hello Ngenda Hotel, I'm interested in booking the " + roomName + ". Please check availability for me.";
+            const whatsappUrl = "https://wa.me/" + phone.replace('+', '') + "?text=" + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank');
+        }
+        </script>
+
+{% endblock %}

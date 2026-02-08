@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}{{ room.name }} - Ngenda Hotel{% endblock %}
+
+{% block content %}
+<!-- ROOM DETAILS START -->
+<div class="section-full p-tb90 bg-white">
+    <div class="container">
+        <div class="row">
+            <!-- Room Images -->
+            <div class="col-lg-8 col-md-12">
+                <div class="room-detail-slider owl-carousel owl-btn-vertical-center">
+                    <div class="item">
+                        <img src="{{ url_for('static', filename='images/rooms/' + room.image) }}" alt="{{ room.name }}" style="width: 100%; height: 400px; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <!-- Room Description -->
+                <div class="m-t50">
+                    <h3 class="m-b20">{{ room.name }}</h3>
+                    <p>{{ room.description }}</p>
+                    
+                    <!-- Room Features -->
+                    <div class="room-features m-t30">
+                        <h4 class="m-b20">Room Features</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-check">
+                                    <li><i class="fa fa-check text-primary"></i> Size: {{ room.size }}</li>
+                                    <li><i class="fa fa-check text-primary"></i> Capacity: {{ room.capacity }} guests</li>
+                                    <li><i class="fa fa-check text-primary"></i> Bed Type: {{ room.beds }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-check">
+                                    {% for amenity in room.amenities %}
+                                    <li><i class="fa fa-check text-primary"></i> {{ amenity }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Booking Section -->
+            <div class="col-lg-4 col-md-12">
+                <div class="booking-sidebar bg-gray p-a30">
+                    <div class="booking-form">
+                        <h3 class="m-b20">Book This Room</h3>
+                        
+                        <div class="form-group">
+                            <label>Price</label>
+                            <div class="price-display">
+                                <h3 class="text-primary m-b0">{{ room.currency }} {{ "{:,}".format(room.price) }}</h3>
+                                <small>per night</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Check-in Date</label>
+                            <input type="date" class="form-control" id="checkin-date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Check-out Date</label>
+                            <input type="date" class="form-control" id="checkout-date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Guests</label>
+                            <select class="form-control" id="guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" onclick="bookRoomViaWhatsApp('{{ room.name }}')" class="site-button btn-half w-100">
+                                <span>Book Now via WhatsApp</span><em></em>
+                            </button>
+                        </div>
+                        
+                        <div class="form-group text-center">
+                            <small>
+                                <a href="https://www.booking.com/hotel/tz/ngenda-and-apartments-mbeya.html" target="_blank" class="text-primary">
+                                    Or book via Booking.com
+                                </a>
+                            </small>
+                        </div>
+                        
+                        <!-- Why Book Direct -->
+                        <div class="why-book-direct m-t30 p-a20 bg-primary text-white">
+                            <h5 class="m-b10"><i class="fa fa-gift m-r10"></i>Why Book Direct?</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-check m-r10"></i>10% discount on direct bookings</li>
+                                <li><i class="fa fa-check m-r10"></i>Free airport shuttle</li>
+                                <li><i class="fa fa-check m-r10"></i>Flexible cancellation</li>
+                                <li><i class="fa fa-check m-r10"></i>Personalized service</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Similar Rooms -->
+        <div class="similar-rooms m-t50">
+            <h3 class="m-b30">Similar Rooms</h3>
+            <div class="row">
+                {% for similar_room in similar_rooms %}
+                <div class="col-md-4 m-b30">
+                    <div class="room-card">
+                        <img src="{{ url_for('static', filename='images/rooms/' + similar_room.image) }}" alt="{{ similar_room.name }}" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div class="room-info p-a20">
+                            <h4>{{ similar_room.name }}</h4>
+                            <p class="text-primary">{{ similar_room.currency }} {{ "{:,}".format(similar_room.price) }}/night</p>
+                            <a href="javascript:void(0)" onclick="bookRoomViaWhatsApp('{{ similar_room.name }}')" class="site-button btn-half">
+                                <span>Book Now</span><em></em>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROOM DETAILS END -->
+
+<!-- WhatsApp Booking Functions -->
+<script>
+function bookRoomViaWhatsApp(roomName) {
+    const checkin = document.getElementById('checkin-date').value || 'Check-in date';
+    const checkout = document.getElementById('checkout-date').value || 'Check-out date';
+    const guests = document.getElementById('guests').value;
+    
+    const message = `Hello Ngenda Hotel, I would like to book the ${roomName} from ${checkin} to ${checkout} for ${guests} guests. Please provide availability and rates.`;
+    const whatsappUrl = `https://wa.me/255613176484?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Set minimum date to today
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkin-date').setAttribute('min', today);
+    document.getElementById('checkout-date').setAttribute('min', today);
+});
+</script>
+{% endblock %}

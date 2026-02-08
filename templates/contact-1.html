@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Ngenda Hotel | Contact Us - Luxury Hotel in Mbeya, Tanzania{% endblock %}
+
+{% block head %}
+<style>
+/* Contact Page Performance Optimizations */
+.google-map-gray {
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-map-gray iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Loading placeholder */
+.google-map-gray::before {
+    content: "Loading map...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.google-map-gray iframe[src] ~ .google-map-gray::before {
+    display: none;
+}
+
+/* Optimize form rendering */
+.contact-form {
+    transform: translateZ(0); /* Hardware acceleration */
+    backface-visibility: hidden;
+}
+
+/* Prevent layout shift */
+.gmap-outline {
+    min-height: 350px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+        
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-parallax bg-top-center"   style="background-image:url({{ url_for('static', filename='images/banner/banner2.png') }});">
+            	<div class="overlay-main bg-black opacity-07"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                    	<div class="banner-title-outer">
+                        	<div class="banner-title-name">
+                        		<h2 class="text-white  font-80 font-weight-900">Contact Us</h2>
+                            </div>
+                        </div>
+                        <!-- BREADCRUMB ROW -->                            
+                        
+                            <div>
+                                <ul class="wt-breadcrumb breadcrumb-style-2">
+                                    <li><a href="javascript:void(0);">Home</a></li>
+                                    <li>Contact Us</li>
+                                </ul>
+                            </div>
+                        
+                        <!-- BREADCRUMB ROW END -->                        
+                    </div>
+                </div>
+            </div>
+            <!-- INNER PAGE BANNER END -->
+            
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show m-t30" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- SECTION CONTENTG START -->
+            <div class="section-full p-tb80">
+                <!-- LOCATION BLOCK-->
+                <div class="container">
+                
+                    <!-- GOOGLE MAP & CONTACT FORM -->
+                    <div class="section-content">
+                        <!-- CONTACT FORM-->
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                            	<div class="contact-info text-black m-b30">
+                                    <!-- TITLE START -->
+                                    <div class="section-head text-left">
+                                        <h2 class="m-b5">Contact Info</h2>
+                                    </div>
+                                    <!-- TITLE END -->                                 
+                                    <div class="wt-icon-box-wraper left p-b40">
+                                        <div class="icon-xs"><i class="fa fa-phone"></i></div>
+                                        <div class="icon-content">
+                                        <div class="icon-xs"><i class="fa fa-envelope"></i></div>
+                                        <div class="icon-content">
+                                            <h5 class="m-t0 font-weight-500">Email address</h5>
+                                            <p>reservations@ngendahotel.com</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="wt-icon-box-wraper left p-b40">
+                                        <div class="icon-xs"><i class="fa fa-phone"></i></div>
+                                        <div class="icon-content">
+                                            <h5 class="m-t0 font-weight-500">Phone numbers</h5>
+                                            <p>0671 271 247</p>
+                                            <p>0755 920 058</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="wt-icon-box-wraper left p-b40">
+                                        <div class="icon-xs"><i class="fa fa-map-marker"></i></div>
+                                        <div class="icon-content">
+                                            <h5 class="m-t0 font-weight-500">Address info</h5>
+                                            <strong>Isyesye–Hayanga, Mbeya.</strong> (Near Hayanga Primary School)                                     </div>
+                                    </div>
+                                </div>
+                            </div>                        
+                        	<div class="col-lg-8 col-md-6">
+                            	<form class="contact-form cons-contact-form" method="post" action="{{ url_for('contact') }}">
+                                    <div class="contact-one m-b30">
+                                    
+                                        <!-- TITLE START -->
+                                        <div class="section-head text-left">
+                                            <h2 class="m-b5">Get In Touch</h2>
+                                        </div>
+                                        <!-- TITLE END -->  
+                                        
+                                        <div class="form-group">
+                                            <input name="username" type="text" required class="form-control" placeholder="Name">
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <input name="email" type="text" class="form-control" required placeholder="Email">
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <textarea name="message" rows="4" class="form-control " required placeholder="Message"></textarea>
+                                        </div>
+                                    
+                                    	<div class="text-right">
+                                            <button name="submit" type="submit" value="Submit" class="btn-half site-button button-lg m-b15">
+                                                    <span>Submit</span><em></em>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    
+                    <div class="gmap-outline m-b50">
+                        <div  class="google-map-gray google-map">
+                            <!-- Optimized Google Maps iframe with lazy loading -->
+                            <iframe 
+                                src="https://maps.google.com/maps?q=Isyesye-Hayanga,+Mbeya,+Tanzania&output=embed" 
+                                width="100%" 
+                                height="350" 
+                                style="border:0; border-radius: 8px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Ngenda Hotel Location Map">
+                            </iframe>
+                        </div>
+                    </div>                    
+                </div>
+           </div>
+         
+            <!-- SECTION CONTENT END -->
+            
+
+{% endblock %}
