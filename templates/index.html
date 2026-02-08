@@ -1320,6 +1320,66 @@
         }
         </style>
         
+        <!-- Hero Section Responsive Styles -->
+        <style>
+        /* Hero Section Mobile Responsiveness */
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            font-family: 'DM Serif Text', serif;
+            text-transform: uppercase;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 4vw !important; /* Responsive font size */
+                line-height: 1.3 !important; /* Increased line height */
+                padding: 0 15px !important; /* Side padding */
+                text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6) !important; /* Light shadow */
+            }
+            
+            .hero-section p {
+                font-size: 3vw !important;
+                padding: 0 15px !important;
+                line-height: 1.4 !important;
+            }
+            
+            .hero-section .slider-btn-left {
+                padding: 12px 25px !important;
+                font-size: 3.5vw !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 3.5vw !important; /* Even smaller for very small screens */
+                line-height: 1.4 !important;
+                padding: 0 12px !important;
+            }
+            
+            .hero-section p {
+                font-size: 2.8vw !important;
+                padding: 0 12px !important;
+            }
+            
+            .hero-section .slider-btn-left {
+                padding: 10px 20px !important;
+                font-size: 3vw !important;
+            }
+        }
+        </style>
+        
         <!-- HMS Booking Functions -->
         <script>
         // HMS API Configuration
