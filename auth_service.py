@@ -19,8 +19,8 @@ class HMSAuthService:
     def __init__(self, base_url=None, auth_email=None, auth_password=None, hotel_id=None):
         # Connection Configuration - Use production settings
         self.base_url = base_url or os.getenv('HMS_API_URL', 'http://localhost:5000')
-        self.auth_email = auth_email or os.getenv('HMS_AUTH_EMAIL', 'website-bot@ngendahotel.com')
-        self.auth_password = auth_password or os.getenv('HMS_AUTH_PASSWORD', 'website-bot-service-account-2026')
+        self.auth_email = auth_email or os.getenv('HMS_AUTH_EMAIL', 'website@ngendahotel.com')
+        self.auth_password = auth_password or os.getenv('HMS_AUTH_PASSWORD', 'website-service-account-2026')
         self.hotel_id = hotel_id or os.getenv('HMS_HOTEL_ID', '1')
         
         # Endpoint Configuration
@@ -49,8 +49,8 @@ class HMSAuthService:
     def _verify_production_credentials(self):
         """Verify if we should use real HMS or mock mode"""
         # Check if we have production credentials
-        has_real_email = self.auth_email and self.auth_email != 'website-bot@ngendahotel.com'
-        has_real_password = self.auth_password and self.auth_password != 'website-bot-service-account-2026'
+        has_real_email = self.auth_email and self.auth_email != 'website@ngendahotel.com'
+        has_real_password = self.auth_password and self.auth_password != 'website-service-account-2026'
         has_real_url = self.base_url and 'localhost' not in self.base_url
         
         # If we have real credentials and modules are available, use real HMS

@@ -1415,12 +1415,7 @@
                 // Fallback to hardcoded rooms if HMS fails
                 loadFallbackRooms();
                 
-                // Show appropriate message
-                if (error.message.includes('fetch')) {
-                    showAlert('Unable to connect to hotel system. Showing available rooms.', 'warning');
-                } else {
-                    showAlert('Hotel system temporarily unavailable. Showing available rooms.', 'warning');
-                }
+                // Don't show any notification to users - silent fallback
             }
         }
         

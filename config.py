@@ -12,8 +12,8 @@ class Config:
     HMS_API_KEY = os.environ.get('HMS_API_KEY') or 'ngenda_website_key'
     
     # HMS Authentication Configuration
-    HMS_AUTH_EMAIL = os.environ.get('HMS_AUTH_EMAIL') or 'website-bot@ngendahotel.com'
-    HMS_AUTH_PASSWORD = os.environ.get('HMS_AUTH_PASSWORD') or 'website-bot-service-account-2026'
+    HMS_AUTH_EMAIL = os.environ.get('HMS_AUTH_EMAIL') or 'website@ngendahotel.com'
+    HMS_AUTH_PASSWORD = os.environ.get('HMS_AUTH_PASSWORD') or 'website-service-account-2026'
     HMS_HOTEL_ID = os.environ.get('HMS_HOTEL_ID') or '1'
     
     # HMS Endpoint Configuration
