@@ -2,7 +2,7 @@
 
 ## 🎯 **Project Overview**
 **Client**: Ngenda Hotel & Apartments Website (Flask Application)
-**Developer**: WindSurf (HMS Development Team)
+**Developer**: dickson software engineer (HMS Development Team)
 **Integration**: Real-time booking synchronization between website and Hotel Management System
 
 ---
@@ -261,7 +261,7 @@ Pricing Structure:
 
 ## 🚀 **Integration Instructions**
 
-### **For WindSurf Development Team**
+### **For Development Team**
 
 #### **Step 1: API Base URL**
 ```
@@ -408,11 +408,11 @@ Variables:
 
 ## 📞 **Contact Information**
 
-### **WindSurf Development Team**
-- **Technical Lead**: [WindSurf Developer Name]
-- **Email**: [developer@windsurf.com]
-- **Phone**: [WindSurf Contact Number]
-- **Project Repository**: [Git repo URL if available]
+### **Development Team**
+- **Technical Lead**: dickson software engineer
+- **Email**: dicksonfredy1@gmail.com
+- **Phone**: +255671271247
+- **Project Repository**: https://github.com/Ferlsafer/ngenda-hotel-website
 
 ### **Ngenda Hotel Team**
 - **Technical Contact**: [Hotel IT Manager]
