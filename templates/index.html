@@ -18,14 +18,14 @@
 </div>
 
             <!-- HERO SECTION START -->
-            <div class="hero-section" style="position: relative; height: 100vh; overflow: hidden;">
-                <img src="{{ url_for('static', filename='images/main-slider/slider.jpg') }}" alt="Ngenda Hotel" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;">
+            <div class="hero-section">
+                <img src="{{ url_for('static', filename='images/main-slider/slider.jpg') }}" alt="Ngenda Hotel">
+                <div>
                     <div style="text-align: center; color: white; max-width: 800px; padding: 20px;">
-                        <h1 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; font-family: 'DM Serif Text', serif; text-transform: uppercase;">
+                        <h1>
                             <span style="color: white;">Welcome to <br>Ngenda Hotel & Apartments</span>
                         </h1>
-                        <p style="font-size: 1.2rem; margin-bottom: 30px; line-height: 1.6; font-family: 'Roboto', sans-serif;">
+                        <p>
                             <strong style="color: #f0ad4e;">Where comfort meets calm.</strong> Wake up in peace, live in style.
                             <br><br>
                             <em style="font-style: italic; color: rgba(255, 255, 255, 0.9);">Mahali tulivu pa kufurahia maisha kwa utulivu na starehe.</em>
@@ -249,7 +249,7 @@
                             </div>
                             
                         	<div class="col-lg-6 col-md-12">
-                            	<div class="home-about-block-outer bg-repeat bg-white" style="background-image:url({{ url_for('static', filename='images/background/bg-dot.jpg') }});">
+                            	<div class="home-about-block-outer bg-repeat bg-white" style="background-image: url('{{ url_for('static', filename='images/background/bg-dot.jpg') }}');">
                                 	<div class="home-about-block-inner">
                                         <div class="home-about-slider owl-carousel owl-btn-vertical-center">
                                         
@@ -1316,66 +1316,6 @@
             
             .hero-section {
                 margin-top: 50px;
-            }
-        }
-        </style>
-        
-        <!-- Hero Section Responsive Styles -->
-        <style>
-        /* Hero Section Mobile Responsiveness */
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            font-family: 'DM Serif Text', serif;
-            text-transform: uppercase;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        
-        .hero-section p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        /* Mobile Responsive Adjustments */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 4vw !important; /* Responsive font size */
-                line-height: 1.3 !important; /* Increased line height */
-                padding: 0 15px !important; /* Side padding */
-                text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6) !important; /* Light shadow */
-            }
-            
-            .hero-section p {
-                font-size: 3vw !important;
-                padding: 0 15px !important;
-                line-height: 1.4 !important;
-            }
-            
-            .hero-section .slider-btn-left {
-                padding: 12px 25px !important;
-                font-size: 3.5vw !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-section h1 {
-                font-size: 3.5vw !important; /* Even smaller for very small screens */
-                line-height: 1.4 !important;
-                padding: 0 12px !important;
-            }
-            
-            .hero-section p {
-                font-size: 2.8vw !important;
-                padding: 0 12px !important;
-            }
-            
-            .hero-section .slider-btn-left {
-                padding: 10px 20px !important;
-                font-size: 3vw !important;
             }
         }
         </style>
